@@ -1,2 +1,2 @@
-merlin-utilities
+Merlin-Utilities
 ================
