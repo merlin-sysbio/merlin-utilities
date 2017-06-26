@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author adias
+ *
+ */
 public class ConfFileReader {
 
 	public static Map<String,String> loadConf(String path) throws IOException{
