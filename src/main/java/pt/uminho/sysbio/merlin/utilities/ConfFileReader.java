@@ -28,7 +28,7 @@ public class ConfFileReader {
 
 		String text, key, value;
 		while ((text = bufferedReader.readLine()) != null) {
-			if(text.toLowerCase().matches("^[a-z].*")){
+			if(text.toLowerCase().matches("^[a-z].*") && (text.length()-text.replace(":", "").length())==1){
 				text = text.replaceAll("\\s","");
 				key = text.split(":")[0];
 				value = text.split(":")[1];
