@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class PairComparator<T> implements Comparator<Pair<String,T>>, Serializable {
 
-	private static final long serialVersionUID = 1039418059532611238L;
+	private static final long serialVersionUID = 1L;
 
 	/* (non-Javadoc)
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
