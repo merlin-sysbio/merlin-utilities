@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class MetaboliteContainer {
 	
-	private String metaboliteID;
+	private int metaboliteID;
 	private String name;
 	private String formula;
 	private String stoichiometric_coefficient;
@@ -43,7 +43,7 @@ public class MetaboliteContainer {
 	 * @param numberofchains
 	 * @param compartment_name
 	 */
-	public MetaboliteContainer(String metaboliteID, String name, String formula, String stoichiometric_coefficient, String numberofchains, String compartment_name) {
+	public MetaboliteContainer(int metaboliteID, String name, String formula, String stoichiometric_coefficient, String numberofchains, String compartment_name) {
 		
 		this.setMetaboliteID(metaboliteID);
 		this.setFormula(formula);
@@ -56,14 +56,14 @@ public class MetaboliteContainer {
 	/**
 	 * @return the metaboliteID
 	 */
-	public String getMetaboliteID() {
+	public int getMetaboliteID() {
 		return metaboliteID;
 	}
 
 	/**
 	 * @param metaboliteID the metaboliteID to set
 	 */
-	public void setMetaboliteID(String metaboliteID) {
+	public void setMetaboliteID(int metaboliteID) {
 		this.metaboliteID = metaboliteID;
 	}
 
