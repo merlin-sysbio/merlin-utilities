@@ -24,9 +24,10 @@ public class DatabaseReactionContainer {
 	isNonEnzymatic;
 	private Map<String, List<String>> ecnumbers_protein_id;
 	private List<String> pathways, protein_id, ecnumbers;
-	private List<String> compound_idcompounds,
+	private List<String> 
 			stoichiometric_coefficients, 
-			numbersofchains, compartment_idcompartment;
+			numbersofchains;
+	private List<Integer> compartment_idcompartment, compound_idcompounds;
 
 
 	/**
@@ -57,7 +58,7 @@ public class DatabaseReactionContainer {
 		this.isNonEnzymatic = isNonEnzymatic;
 		this.ecnumbers_protein_id = new HashMap<>();
 		this.pathways = new ArrayList<>();
-		this.compound_idcompounds = new ArrayList<String>();
+		this.compound_idcompounds = new ArrayList<>();
 		this.stoichiometric_coefficients = new ArrayList<String>();
 		this.numbersofchains = new ArrayList<String>();
 		this.ecnumbers = new ArrayList<>();
@@ -70,7 +71,7 @@ public class DatabaseReactionContainer {
 	 * @param stoichiometric_coefficient
 	 * @param numberofchains
 	 */
-	public void addEntry(String compound_idcompound, String stoichiometric_coefficient, String numberofchains) {
+	public void addEntry(int compound_idcompound, String stoichiometric_coefficient, String numberofchains) {
 		
 		this.compound_idcompounds.add(this.compound_idcompounds.size(), compound_idcompound);
 		this.stoichiometric_coefficients.add(this.stoichiometric_coefficients.size(), stoichiometric_coefficient);
@@ -83,7 +84,7 @@ public class DatabaseReactionContainer {
 	 * @param numberofchains
 	 * @param compartment
 	 */
-	public void addEntry(String compound_idcompound, String stoichiometric_coefficient, String numberofchains, String compartment) {
+	public void addEntry(int compound_idcompound, String stoichiometric_coefficient, String numberofchains, int compartment) {
 		
 		this.compound_idcompounds.add(this.compound_idcompounds.size(), compound_idcompound);
 		this.stoichiometric_coefficients.add(this.stoichiometric_coefficients.size(), stoichiometric_coefficient);
@@ -212,13 +213,13 @@ public class DatabaseReactionContainer {
 	/**
 	 * @return the compound_idcompound
 	 */
-	public List<String> getCompound_idcompounds() {
+	public List<Integer> getCompound_idcompounds() {
 		return compound_idcompounds;
 	}
 	/**
 	 * @param compound_idcompound the compound_idcompound to set
 	 */
-	public void setCompound_idcompound(List<String> compound_idcompounds) {
+	public void setCompound_idcompound(List<Integer> compound_idcompounds) {
 		this.compound_idcompounds = compound_idcompounds;
 	}
 	/**
@@ -355,7 +356,7 @@ public class DatabaseReactionContainer {
 	/**
 	 * @return the compartment_idcompartment
 	 */
-	public List<String> getCompartment_idcompartment() {
+	public List<Integer> getCompartment_idcompartment() {
 		return compartment_idcompartment;
 	}
 
@@ -363,12 +364,7 @@ public class DatabaseReactionContainer {
 	 * @param compartment_idcompartment the compartment_idcompartment to set
 	 */
 	public void setCompartment_idcompartment(
-			List<String> compartment_idcompartment) {
+			List<Integer> compartment_idcompartment) {
 		this.compartment_idcompartment = compartment_idcompartment;
 	}
-
-
-
-
-
 }
