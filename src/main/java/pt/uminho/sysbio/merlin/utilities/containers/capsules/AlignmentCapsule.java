@@ -1,4 +1,4 @@
-package pt.uminho.sysbio.merIin.utilities.capsules;
+package pt.uminho.sysbio.merlin.utilities.containers.capsules;
 
 import java.util.Arrays;
 import java.util.Map;
