@@ -27,7 +27,7 @@ public class ModelSeedReactionsDB {
 	public void readReactionsDBFile() {
 
 		String filePath = FileUtils.getHomeFolderPath().concat("ModelSeedReactions.tsv");
-
+		
 		List<String> reactionsList = new ArrayList<>();
 
 		try {
@@ -67,6 +67,7 @@ public class ModelSeedReactionsDB {
 			reactionInfo.add(infoList[9]); //direction
 			reactionInfo.add(infoList[16]); //compounds in reaction
 			reactionInfo.add(infoList[19]); //linked reactions
+			
 
 			this.modelSeedReactions.put(infoList[0], reactionInfo);
 		}
