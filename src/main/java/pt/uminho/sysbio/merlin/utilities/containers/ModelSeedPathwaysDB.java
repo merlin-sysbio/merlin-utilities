@@ -112,7 +112,7 @@ public class ModelSeedPathwaysDB {
 				
 				String[] pathway = new String[2];
 				pathway[0] = infoList[1].substring(3); 
-				pathway[1] = infoList[2];
+				pathway[1] = infoList[2].replace("\"", "");
 
 				if(!this.pathways_hierarchy.containsKey(superPathways[1])){
 
@@ -169,7 +169,7 @@ public class ModelSeedPathwaysDB {
 	 */
 	public String getPathwayName(String pathwayID){
 		
-		return this.keggPathwaysDB.get(pathwayID).get(0);
+		return this.keggPathwaysDB.get(pathwayID).get(0).replace("\"", "");
 	}
 	
 	
