@@ -67,6 +67,30 @@ public class DatabaseReactionContainer {
 	}
 	
 	/**
+	 * @param databaseReactionContainer
+	 */
+	public DatabaseReactionContainer (DatabaseReactionContainer databaseReactionContainer) {
+		
+		super();
+		this.name = databaseReactionContainer.getName();
+		this.equation = databaseReactionContainer.getEquation();
+		this.source = databaseReactionContainer.getSource();
+		this.reversible = databaseReactionContainer.isReversible();
+		this.inModel = databaseReactionContainer.isInModel();
+		this.isGeneric = databaseReactionContainer.isGeneric();
+		this.isSpontaneous = databaseReactionContainer.isSpontaneous();
+		this.isNonEnzymatic = databaseReactionContainer.isNonEnzymatic();
+		this.ecnumbers_protein_id = databaseReactionContainer.getEcnumbers_protein_id();
+		this.pathways = databaseReactionContainer.getPathways();
+		this.compound_idcompounds = databaseReactionContainer.getCompound_idcompounds();
+		this.stoichiometric_coefficients = databaseReactionContainer.getStoichiometric_coefficients();
+		this.numbersofchains = databaseReactionContainer.getNumbersofchains();
+		this.ecnumbers = databaseReactionContainer.getEcnumbers();
+		this.protein_id = databaseReactionContainer.getProtein_id();
+		this.compartment_idcompartment = databaseReactionContainer.getCompartment_idcompartment();
+	}
+	
+	/**
 	 * @param compound_idcompound
 	 * @param stoichiometric_coefficient
 	 * @param numberofchains
