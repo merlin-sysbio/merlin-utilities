@@ -28,7 +28,8 @@ public class AlignmentCapsule {
 	private int gapsQuery;
 	private int gapsTarget;
 	private String ecNumber;
-	private Map<String, Set<String>> closestOrthologues, modules;
+	private Map<String, Set<String>> closestOrthologues;
+	private Map<String, Set<Integer >> modules;
 	
 	
 	/**
@@ -131,7 +132,7 @@ public class AlignmentCapsule {
 	 * @param modules
 	 */
 	public AlignmentCapsule(String query, double coverageQuery, double coverageTarget, String target, double score, String ecNumber, 
-			Map<String, Set<String>> closestOrthologues, Map<String, Set<String>> modules){
+			Map<String, Set<String>> closestOrthologues, Map<String, Set<Integer >> modules){
 		
 		super();
 		this.setQuery(query);
@@ -568,14 +569,14 @@ public class AlignmentCapsule {
 	/**
 	 * @return the modules
 	 */
-	public Map<String, Set<String>> getModules() {
+	public Map<String, Set<Integer>> getModules() {
 		return modules;
 	}
 
 	/**
 	 * @param modules the modules to set
 	 */
-	public void setModules(Map<String, Set<String>> modules) {
+	public void setModules(Map<String, Set<Integer >> modules) {
 		this.modules = modules;
 	}
 }
