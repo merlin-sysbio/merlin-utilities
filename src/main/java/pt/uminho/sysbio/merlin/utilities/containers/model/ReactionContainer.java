@@ -1,10 +1,13 @@
 package pt.uminho.sysbio.merlin.utilities.containers.model;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import pt.uminho.ceb.biosystems.mew.utilities.datastructures.pair.Pair;
 
 public class ReactionContainer implements EntityContainer {
 
@@ -18,7 +21,8 @@ public class ReactionContainer implements EntityContainer {
 	private String equation;
 	private	Map<String, String[]> reactantsStoichiometry;
 	private	Map<String, String[]> productsStoichiometry;
-	private Set<String> enzymes, comments, genes, pathways;
+	private Set<String> enzymes, comments, pathways;
+	private Set<Pair<String, String>> genes;
 	private	Map<String, String> pathwaysMap;
 	private String geneRule;
 	
@@ -349,14 +353,14 @@ public class ReactionContainer implements EntityContainer {
 	/**
 	 * @return the genes
 	 */
-	public Set<String> getGenes() {
+	public Set<Pair<String, String>> getGenes() {
 		return genes;
 	}
 
 	/**
 	 * @param genes the genes to set
 	 */
-	public void setGenes(Set<String> genes) {
+	public void setGenes(Set<Pair<String, String>> genes) {
 		this.genes = genes;
 	}
 
@@ -400,6 +404,19 @@ public class ReactionContainer implements EntityContainer {
 	 */
 	public void setGeneRule(String geneRule) {
 		this.geneRule = geneRule;
+	}
+	
+	
+	/**
+	 * @param geneLocus
+	 * @param geneName
+	 */
+	public void addGene(String geneLocus, String geneName){
+		
+		if(this.genes==null)
+			this.genes = new HashSet<>();
+		
+		this.genes.add(new Pair<String, String> (geneLocus, geneName));
 	}
 
 
