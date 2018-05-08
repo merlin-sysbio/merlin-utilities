@@ -55,7 +55,7 @@ public class ModelSeedCompoundsDB {
 
 			String[] infoList = line.split("\t");
 
-			for(int i=1 ; i<7 ; i++)
+			for(int i=1 ; i<8 ; i++)
 				compoundInfo.add(infoList[i]);
 
 			this.compoundsDB.put(infoList[0], compoundInfo);
@@ -107,6 +107,16 @@ public class ModelSeedCompoundsDB {
 	public String getCompoundFormula(String compoundID){
 
 		return this.compoundsDB.get(compoundID).get(2);	
+	}
+	
+	/**
+	 * method to get compound charge
+	 * @param compoundID
+	 * @return
+	 */
+	public String getCompoundCharge(String compoundID){
+
+		return this.compoundsDB.get(compoundID).get(6);	
 	}
 
 	/**
