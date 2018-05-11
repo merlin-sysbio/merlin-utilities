@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Set;
+import pt.uminho.ceb.biosystems.mew.utilities.datastructures.pair.Pair;
 
 public class Utilities {
 
@@ -74,7 +75,7 @@ public class Utilities {
 	 * @param new_rules
 	 * @return
 	 */
-	public static String parseRuleToString(List<List<Pair<String,String>>> new_rules) {
+	public static String parseRuleListToString(List<List<Pair<String,String>>> new_rules) {
 
 		String ret = "";
 		boolean not_first_or = false;
@@ -93,8 +94,8 @@ public class Utilities {
 
 				ret = ret.concat(new_rule.getA());
 				
-				if(new_rule.getB() != null && !new_rule.getB().isEmpty())
-					ret = ret.concat(" (").concat(new_rule.getA()).concat("");
+//				if(new_rule.getB() != null && !new_rule.getB().isEmpty())
+//					ret = ret.concat(" (").concat(new_rule.getB()).concat(")");
 
 				not_first_and = true;
 			}
