@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import pt.uminho.sysbio.merlin.utilities.Utilities;
+
 public class ProteinsGPR_CI {
 
 	private String ecnumber;
@@ -74,29 +76,7 @@ public class ProteinsGPR_CI {
 
 			this.rules = new_rules;
 
-			ret = "";
-			boolean not_first_or = false;
-
-			for(Set<String> rules : new_rules) {
-
-				if(not_first_or)
-					ret = ret.concat(" OR ");
-
-				boolean not_first_and = false;
-
-				for(String new_rule : rules) {	
-
-					if(not_first_and)
-						ret = ret.concat(" AND ");
-
-					ret = ret.concat(new_rule);
-
-					not_first_and = true;
-				}
-
-				not_first_or = true;
-			}
-
+			ret = Utilities.parseRuleToString(new_rules);
 		}
 
 		return ret;
