@@ -1,5 +1,6 @@
 package pt.uminho.sysbio.merlin.utilities;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +9,9 @@ import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -110,6 +114,53 @@ public class Utilities {
 			not_first_or = true;
 		}
 		return ret;
+	}
+	
+	
+	/**
+	 * retrieve the download file in List format
+	 * 
+	 * @param httpUrl
+	 * @return
+	 * @throws IOException
+	 */
+	public static List<String> getFileFromHttpUrl(String httpUrl) throws IOException{
+		
+		URL u = new URL (httpUrl);
+		HttpURLConnection huc =  ( HttpURLConnection )  u.openConnection (); 
+		huc.setRequestMethod ("HEAD"); 
+		HttpURLConnection.setFollowRedirects(false);
+		huc.connect () ; 
+		int code = huc.getResponseCode();
+		
+		String res = null;
+		List<String> result = null;
+
+		if(code == HttpURLConnection.HTTP_OK){
+
+			URL url = new URL(httpUrl);
+			URLConnection conn = url.openConnection();
+			InputStream inputStream = conn.getInputStream();
+			
+			ByteArrayOutputStream writer = new ByteArrayOutputStream();
+			byte[] buffer = new byte[1024];
+			int length;
+			while ((length = inputStream.read(buffer)) != -1) {
+				writer.write(buffer, 0, length);
+			}
+			res = writer.toString(StandardCharsets.UTF_8.name());
+			
+			//ALTERNATIVES
+			//1
+			//String writer = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+			//2
+			//Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+			//String writer = s.hasNext() ? s.next() : "";
+
+			String[] splited = res.split("\n");
+			result = new ArrayList<>(Arrays.asList(splited));
+		}
+		return result;
 	}
 	
 	
