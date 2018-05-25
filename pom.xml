@@ -1,33 +1,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>pt.uminho.sysbio.merlin</groupId>
+	<groupId>pt.uminho.ceb.biosystems.merlin</groupId>
 	<artifactId>merlin-utilities</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>merlin-utilities</name>
 
 	<repositories>
- 	    <repository>
+		<repository>
 			<id>nexus</id>
 			<name>Nexus BioSystems Server</name>
 			<!-- <url>http://192.168.1.99/nexus/content/groups/public/</url> -->
 			<url>http://193.137.11.210/nexus/content/groups/public/</url>
-		</repository> 
-  </repositories> 
+		</repository>
+	</repositories>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<pt.uminho.sysbio.version>0.0.1-SNAPSHOT</pt.uminho.sysbio.version>
+		<pt.uminho.ceb.biosystems.merlin.version>0.0.2-SNAPSHOT</pt.uminho.ceb.biosystems.merlin.version>
+		<pt.uminho.ceb.biosystems.merlin.groupId>pt.uminho.ceb.biosystems.merlin</pt.uminho.ceb.biosystems.merlin.groupId>
 	</properties>
-	
+
 	<dependencies>
-		<dependency>
-			<groupId>pt.uminho.ceb.biosystems.mew</groupId>
-			<artifactId>utilities</artifactId>
-			<version>0.0.1.M-SNAPSHOT</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/pt.uminho.ceb.biosystems.mew/mew-utilities -->
+			<dependency>
+				<groupId>pt.uminho.ceb.biosystems.mew</groupId>
+				<artifactId>mew-utilities</artifactId>
+				<version>1.0.1</version>
+			</dependency>
 	</dependencies>
 
 	<build>
@@ -45,10 +47,8 @@
 				<artifactId>nexus-staging-maven-plugin</artifactId>
 				<version>1.6.6</version>
 				<extensions>true</extensions>
-<!-- 				<configuration>
-					<serverId>watson</serverId>
-					<nexusUrl>http://193.137.11.210/nexus/</nexusUrl>
-				</configuration> -->
+				<!-- <configuration> <serverId>watson</serverId> <nexusUrl>http://193.137.11.210/nexus/</nexusUrl> 
+					</configuration> -->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -71,21 +71,12 @@
 					</execution>
 				</executions>
 			</plugin>
-   <!--    <plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-javadoc-plugin</artifactId>
-		  <executions>
-		    <execution>
-		      <id>attach-javadocs</id>
-		      <goals>
-		        <goal>jar</goal>
-		      </goals>
-		    </execution>
-		  </executions>
-	</plugin> -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId> 
+				<executions> <execution> <id>attach-javadocs</id> <goals> <goal>jar</goal> 
+				</goals> </execution> </executions> </plugin> -->
 		</plugins>
 	</build>
-	
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>biosystems-snapshots</id>
