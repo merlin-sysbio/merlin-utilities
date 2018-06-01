@@ -29,7 +29,7 @@ public class ModelSeedReactionsDB {
 	 */
 	public void readReactionsDBFile() {
 
-		String filePath = FileUtils.getHomeFolderPath().concat("ModelSeedReactions.tsv");
+		String filePath = FileUtils.getConfFolderPath().concat("ModelSeedReactions.tsv");
 		String httpFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/reactions.tsv";
 		
 		List<String> reactionsList = new ArrayList<>();

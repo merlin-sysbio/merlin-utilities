@@ -191,13 +191,10 @@ public class RulesParser {
 			
 			return res;
 		}
-		
 		else{
 			
 			List<String> left = getGeneRuleCombinations(node.getChildAt(0));
-			
 			List<String> right = getGeneRuleCombinations(node.getChildAt(1));
-			
 			
 			if(isAndNode(node)){
 				res = combineGenes(left, right);
@@ -209,6 +206,29 @@ public class RulesParser {
 			
 			return res;
 		}
+	}
+	
+	
+	/**
+	 * @param geneRulesCombination
+	 * @return
+	 */
+	public static String getGeneRuleString(List<String>geneRulesCombination,  Map<String, Integer> geneIds){
+		
+		if(geneIds!=null && !geneIds.isEmpty()){
+			for(int i=0; i<geneRulesCombination.size(); i++){
+				
+				String[] genes = geneRulesCombination.get(i).split(" AND ");
+				
+				for(String gene : genes)
+					if(geneIds.containsKey(gene.trim()))
+						geneRulesCombination.get(i).replaceAll(gene.trim(), Integer.toString(geneIds.get(gene.trim())));
+			}
+		}
+		
+		String geneRuleString = getOR_geneRulesList2String(geneRulesCombination);
+		
+		return geneRuleString;
 	}
 	
 	/**
@@ -260,7 +280,7 @@ public class RulesParser {
 			for(String rightGene : right){
 				
 				if(!leftGene.equalsIgnoreCase(rightGene))
-					combinations.add(leftGene.concat(" and ").concat(rightGene));
+					combinations.add(leftGene.concat(" AND ").concat(rightGene));
 			}
 		}
 		

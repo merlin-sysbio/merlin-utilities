@@ -37,7 +37,7 @@ public class ModelSeedPathwaysDB {
 	 */
 	public void readPathwaysDBFiles() {
 
-		String keggFilePath = FileUtils.getHomeFolderPath().concat("KEGG_pathways.tsv");
+		String keggFilePath = FileUtils.getConfFolderPath().concat("KEGG_pathways.tsv");
 		//		String modelSeedFilePath = FileUtils.getHomeFolderPath().concat("HopeScenarios.tsv");
 		String httpKeggFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/Pathways/KEGG.pathways";
 
