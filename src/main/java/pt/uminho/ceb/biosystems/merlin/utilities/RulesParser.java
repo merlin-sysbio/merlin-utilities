@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Set;
 
 import pt.uminho.ceb.biosystems.mew.utilities.datastructures.pair.Pair;
+import pt.uminho.ceb.biosystems.mew.utilities.grammar.syntaxtree.AbstractSyntaxTreeNode;
+import pt.uminho.ceb.biosystems.mew.utilities.math.language.mathboolean.DataTypeEnum;
+import pt.uminho.ceb.biosystems.mew.utilities.math.language.mathboolean.IValue;
 
 public class RulesParser {
 
@@ -169,6 +172,99 @@ public class RulesParser {
 	public static String getRules2String(List<List<Pair<String, String>>> geneRules) {
 		
 		return RulesParser.getOR_geneRulesList2String(RulesParser.getAND_geneRulesList2List(geneRules));
+	}
+	
+	/**
+	 * retrieves gene rules combinations
+	 * 
+	 * @param node
+	 * @param list
+	 * @return
+	 */
+	public static List<String> getGeneRuleCombinations(AbstractSyntaxTreeNode<DataTypeEnum, IValue> node){
+		
+		List<String> res = new ArrayList<>();
+		
+		if(node.isLeaf()) {
+			
+			res.add(node.toString());
+			
+			return res;
+		}
+		
+		else{
+			
+			List<String> left = getGeneRuleCombinations(node.getChildAt(0));
+			
+			List<String> right = getGeneRuleCombinations(node.getChildAt(1));
+			
+			
+			if(isAndNode(node)){
+				res = combineGenes(left, right);
+			}
+			else {
+				res.addAll(left);
+				res.addAll(right);
+			}
+			
+			return res;
+		}
+	}
+	
+	/**
+	 * Verify is a rule node is AND
+	 * 
+	 * @param node
+	 * @return
+	 */
+	public static boolean isAndNode (AbstractSyntaxTreeNode<DataTypeEnum, IValue> node){
+		
+		String nodeRule = node.toString();
+		
+		String left = node.getChildAt(0).toString();
+		String right = node.getChildAt(1).toString();
+		nodeRule = node.toString();
+		nodeRule = nodeRule.replace(left, "");
+		nodeRule = nodeRule.replace(right, "");
+		
+		if(nodeRule.matches("\\(\\s{0,3}and\\s{0,3}\\)"))
+			return true;
+		
+//		if(node.matches("\\(.{0,20}\\s(and)\\s.+\\)") || node.matches("\\(.+\\s(and)\\s.{0,20}\\)"))
+//			return true;
+//			
+//		else if(node.matches(".+\\)\\s{1,2}and\\s{1,2}\\(.+")){
+//			
+//			String[] branches = node.split("\\)\\s{1,2}and\\s{1,2}\\(");
+//			
+//			if(Math.abs(StringUtils.countMatches(branches[0],"(") - StringUtils.countMatches(branches[1],"("))==2)
+//				return true;
+//		}
+		
+		return false;
+	}
+	
+
+	/**
+	 * retrive the combinations between one element of each list
+	 * 
+	 * @param left
+	 * @param right
+	 * @return
+	 */
+	public static List<String> combineGenes(List<String> left, List<String> right){
+		
+		List<String> combinations = new ArrayList<>();
+		
+		for(String leftGene : left){
+			for(String rightGene : right){
+				
+				if(!leftGene.equalsIgnoreCase(rightGene))
+					combinations.add(leftGene.concat(" and ").concat(rightGene));
+			}
+		}
+		
+		return combinations;
 	}
 
 }
