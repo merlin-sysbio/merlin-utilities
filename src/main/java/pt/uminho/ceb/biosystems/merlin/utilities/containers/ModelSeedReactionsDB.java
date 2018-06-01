@@ -26,7 +26,7 @@ public class ModelSeedReactionsDB {
 	 */
 	public void readReactionsDBFile() {
 
-		String filePath = FileUtils.getHomeFolderPath().concat("ModelSeedReactions.tsv");
+		String filePath = FileUtils.getConfFolderPath().concat("ModelSeedReactions.tsv");
 		
 		List<String> reactionsList = new ArrayList<>();
 

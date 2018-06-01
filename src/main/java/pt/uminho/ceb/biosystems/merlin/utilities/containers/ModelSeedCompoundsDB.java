@@ -29,7 +29,7 @@ public class ModelSeedCompoundsDB {
 	 */
 	public void readCompoundsDBFile() {
 
-		String filePath = FileUtils.getHomeFolderPath().concat("ModelSeedCompounds.tsv");
+		String filePath = FileUtils.getConfFolderPath().concat("ModelSeedCompounds.tsv");
 
 		List<String> compoundsList = new ArrayList<>();
 
