@@ -1,11 +1,13 @@
 package pt.uminho.ceb.biosystems.merlin.utilities.containers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pt.uminho.ceb.biosystems.merlin.utilities.Utilities;
 import pt.uminho.ceb.biosystems.merlin.utilities.io.FileUtils;
 
 public class ModelSeedPathwaysDB {
@@ -29,7 +31,6 @@ public class ModelSeedPathwaysDB {
 	}
 
 
-
 	/**
 	 * reader for KEGG pathways database '.tsv' file 
 	 * @return
@@ -38,16 +39,17 @@ public class ModelSeedPathwaysDB {
 
 		String keggFilePath = FileUtils.getConfFolderPath().concat("KEGG_pathways.tsv");
 		//		String modelSeedFilePath = FileUtils.getHomeFolderPath().concat("HopeScenarios.tsv");
-
+		String httpKeggFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/Pathways/KEGG.pathways";
 
 		List<String> keggPathwaysList = new ArrayList<>();
 		//		List<String> modelSeedPathwaysList = new ArrayList<>();
 
-
 		try {
-			keggPathwaysList = FileUtils.readLines(keggFilePath);
 			//			modelSeedPathwaysList = FileUtils.readLines(modelSeedFilePath);
-
+			if(new File(keggFilePath).exists())
+				keggPathwaysList = FileUtils.readLines(keggFilePath);
+			else
+				keggPathwaysList = Utilities.getFileFromHttpUrl(httpKeggFileUrl);
 		} 
 
 		catch (IOException e) {
@@ -56,7 +58,6 @@ public class ModelSeedPathwaysDB {
 
 		parseKeggPathwaysFile(keggPathwaysList);
 	}
-
 
 
 	/**
@@ -100,28 +101,31 @@ public class ModelSeedPathwaysDB {
 
 				String[] superPathways = infoList[3].split(";");
 				
-				if(!this.super_pathways.containsKey(superPathways[0])){
+				String superPathway = superPathways[0].replaceAll("\"", "").trim();
+				String intermediary = superPathways[1].replaceAll("\"", "").trim();
+				
+				if(!this.super_pathways.containsKey(superPathway)){
 
-					List<String> superpathway = new ArrayList<>();
-					superpathway.add(superPathways[1]);
-					this.super_pathways.put(superPathways[0], superpathway);
+					List<String> superPathwayList = new ArrayList<>();
+					superPathwayList.add(intermediary);
+					this.super_pathways.put(superPathway, superPathwayList);
 				}
 				else
-					this.super_pathways.get(superPathways[0]).add(superPathways[1]);
+					this.super_pathways.get(superPathway).add(intermediary);
 				
 				
 				String[] pathway = new String[2];
 				pathway[0] = infoList[1].substring(3); 
-				pathway[1] = infoList[2].replace("\"", "");
+				pathway[1] = infoList[2].replaceAll("\"", "").trim();
 
-				if(!this.pathways_hierarchy.containsKey(superPathways[1])){
+				if(!this.pathways_hierarchy.containsKey(intermediary)){
 
 					List<String[]> pathways = new ArrayList<>();
 					pathways.add(pathway);
-					this.pathways_hierarchy.put(superPathways[1], pathways);
+					this.pathways_hierarchy.put(intermediary, pathways);
 				}
 				else
-					this.pathways_hierarchy.get(superPathways[1]).add(pathway);
+					this.pathways_hierarchy.get(intermediary).add(pathway);
 			}
 
 		}

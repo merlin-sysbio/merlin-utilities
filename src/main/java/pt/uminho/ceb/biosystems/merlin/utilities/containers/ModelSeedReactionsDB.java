@@ -1,12 +1,15 @@
 package pt.uminho.ceb.biosystems.merlin.utilities.containers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pt.uminho.ceb.biosystems.merlin.utilities.Utilities;
 import pt.uminho.ceb.biosystems.merlin.utilities.io.FileUtils;
+
 
 public class ModelSeedReactionsDB {
 	
@@ -27,11 +30,15 @@ public class ModelSeedReactionsDB {
 	public void readReactionsDBFile() {
 
 		String filePath = FileUtils.getConfFolderPath().concat("ModelSeedReactions.tsv");
+		String httpFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/reactions.tsv";
 		
 		List<String> reactionsList = new ArrayList<>();
 
 		try {
-			reactionsList = FileUtils.readLines(filePath);
+			if(new File(filePath).exists())
+				reactionsList = FileUtils.readLines(filePath);
+			else
+				reactionsList = Utilities.getFileFromHttpUrl(httpFileUrl);
 		} 
 
 		catch (IOException e) {

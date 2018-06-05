@@ -1,11 +1,13 @@
 package pt.uminho.ceb.biosystems.merlin.utilities.containers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pt.uminho.ceb.biosystems.merlin.utilities.Utilities;
 import pt.uminho.ceb.biosystems.merlin.utilities.io.FileUtils;
 
 
@@ -30,17 +32,20 @@ public class ModelSeedCompoundsDB {
 	public void readCompoundsDBFile() {
 
 		String filePath = FileUtils.getConfFolderPath().concat("ModelSeedCompounds.tsv");
+		String httpFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/compounds.tsv";
 
 		List<String> compoundsList = new ArrayList<>();
 
 		try {
-			compoundsList = FileUtils.readLines(filePath);
+			if(new File(filePath).exists())
+				compoundsList = FileUtils.readLines(filePath);
+			else
+				compoundsList = Utilities.getFileFromHttpUrl(httpFileUrl);
 		} 
 
 		catch (IOException e) {
 			e.printStackTrace();
 		} 
-
 		parseCompoundsFile(compoundsList);
 	}
 
