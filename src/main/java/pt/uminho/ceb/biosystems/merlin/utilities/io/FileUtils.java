@@ -1,6 +1,7 @@
 package pt.uminho.ceb.biosystems.merlin.utilities.io;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.StringTokenizer;
 
 public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils{
@@ -71,7 +72,12 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 	 */
 	public static String getWorkspaceTaxonomyTriageFolderPath(String databaseName, Long taxonomyID){
 		
-		return FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("triage/");
+		String workspaceTriageFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("triage/");
+		
+		File file = new File(workspaceTriageFolder);
+		file.mkdirs();
+		
+		return workspaceTriageFolder;
 	}
 	
 	/** 
