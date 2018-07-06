@@ -19,7 +19,7 @@ public class AlignmentCapsule {
 	private AlignmentScoreType alignmentScoreType;
 	private String matrix;
 	private String ko;
-	private double score, alignedScore, maxScore, minScore;
+	private double score, alignedScore, maxScore, minScore, evalue, bitScore;
 	private Method method;
 	private int[][][] scoreMatrix;
 	private int numIdenticals, numSimilars, queryLength, targetLength, alignmentLength;
@@ -293,6 +293,34 @@ public class AlignmentCapsule {
 	 */
 	public void setMinScore(double minscore) {
 		this.minScore = minscore;
+	}
+
+	/**
+	 * @return
+	 */
+	public double getEvalue() {
+		return evalue;
+	}
+
+	/**
+	 * @param evalue
+	 */
+	public void setEvalue(double evalue) {
+		this.evalue = evalue;
+	}
+
+	/**
+	 * @return the bitScore
+	 */
+	public double getBitScore() {
+		return bitScore;
+	}
+
+	/**
+	 * @param bitScore the bitScore to set
+	 */
+	public void setBitScore(double bitScore) {
+		this.bitScore = bitScore;
 	}
 
 	/**
