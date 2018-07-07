@@ -71,7 +71,12 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 	 */
 	public static String getWorkspaceTaxonomyTriageFolderPath(String databaseName, Long taxonomyID){
 		
-		return FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("triage/");
+		String workspaceTriageFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("triage/");
+		
+		File file = new File(workspaceTriageFolder);
+		file.mkdirs();
+		
+		return workspaceTriageFolder;
 	}
 	
 	/** 

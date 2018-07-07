@@ -1,4 +1,4 @@
-package pt.uminho.ceb.biosystems.merlin.utilities.External;
+package pt.uminho.ceb.biosystems.merlin.utilities.external;
 
 
 
