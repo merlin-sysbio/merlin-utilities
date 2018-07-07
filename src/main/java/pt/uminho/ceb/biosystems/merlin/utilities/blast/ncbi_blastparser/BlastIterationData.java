@@ -4,7 +4,6 @@ import java.util.List;
 
 public class BlastIterationData {
 	
-	private Integer iterNum;
 	private String qseq;
 	private String seqDB;
 	private Parameters param;
@@ -12,43 +11,58 @@ public class BlastIterationData {
 	private String queryDef;
 	private String querylen;
 	private List<Hit> hits;
+	private Iteration iteration;
 	
 	
-	public BlastIterationData(Integer iterNum, String queryID, String queryDef) {
-		this.iterNum = iterNum;
+	public BlastIterationData(Iteration iteration, String queryID, String queryDef) {
+		this.setIteration(iteration);
 		this.queryID = queryID;
 		this.queryDef = queryDef;
 	}
 	
-	public BlastIterationData(Integer iterNum, String queryID, String queryDef, String queryLen) {
-		this(iterNum,queryID,queryDef);
+	public BlastIterationData(Iteration iteration, String queryID, String queryDef, String queryLen) {
+		this(iteration,queryID,queryDef);
 		this.querylen = queryLen;
 	}
+	
 
-	public BlastIterationData(Integer iterNum,String queryID, String queryDef, String queryLen, List<Hit> listHits) {
-		this(iterNum,queryID,queryDef,queryLen);
+	public BlastIterationData(Iteration iteration, String queryID, String queryDef, String queryLen, List<Hit> listHits) {
+		this(iteration,queryID,queryDef,queryLen);
 		this.hits = listHits;
 	}
 	
-	public BlastIterationData(Integer iterNum,String queryID, String queryDef, String queryLen, List<Hit> listHits, String blastDB) {
-		this(iterNum,queryID,queryDef,queryLen,listHits);
+	public BlastIterationData(Iteration iteration, String queryID, String queryDef, String queryLen, List<Hit> listHits, String blastDB) {
+		this(iteration,queryID,queryDef,queryLen,listHits);
 		this.seqDB = blastDB;
 	}
 	
-	public BlastIterationData(Integer iterNum,String queryID, String queryDef, String queryLen, List<Hit> listHits, Parameters params) {
-		this(iterNum,queryID,queryDef,queryLen,listHits);
+	public BlastIterationData(Iteration iteration, String queryID, String queryDef, String queryLen, List<Hit> listHits, Parameters params) {
+		this(iteration,queryID,queryDef,queryLen,listHits);
 		this.param = params;
 	}
 	
+	
+	/**
+	 * @return the iteration
+	 */
+	public Iteration getIteration() {
+		return iteration;
+	}
+
+	/**
+	 * @param iteration the iteration to set
+	 */
+	public void setIteration(Iteration iteration) {
+		this.iteration = iteration;
+	}
 	
 	/**
 	 * @return
 	 */
 	public String getQuerySequence () {
 		return this.qseq;
-		
 	}
-	
+
 	/**
 	 * @param qseq
 	 */
@@ -235,14 +249,16 @@ public class BlastIterationData {
 		return Integer.parseInt(this.hits.get(Integer.parseInt(hitNum)-1).getHitHsps().getHsp().get(0).getHspPositive());
 	}
 	
-	
+	/**
+	 * @param hitNum
+	 * @return
+	 */
 	public Double getPositivesScore(String hitNum){
 		
 		Hsp hsPair = this.hits.get(Integer.parseInt(hitNum)-1).getHitHsps().getHsp().get(0);
 		
 		return Double.parseDouble(hsPair.getHspPositive())/Double.parseDouble(hsPair.getHspAlignLen());
 	}	
-	
 	
 	/**
 	 * @param hit
@@ -251,5 +267,14 @@ public class BlastIterationData {
 	public Integer getHitAlignmentLength(String hitNum){
 		
 		return Integer.parseInt(this.hits.get(Integer.parseInt(hitNum)-1).getHitHsps().getHsp().get(0).getHspAlignLen());
+	}
+	
+	/**
+	 * @param hitNum
+	 * @return
+	 */
+	public Integer getHitAlignmentGaps(String hitNum){
+		
+		return Integer.parseInt(this.hits.get(Integer.parseInt(hitNum)-1).getHitHsps().getHsp().get(0).getHspGaps());
 	}
 }

@@ -49,7 +49,7 @@ public class NcbiBlastParser {
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
-			System.out.println("Ocorreu um erro ao ler o ficheiro. Erro: "+ ex.getMessage());
+			System.err.println("An error occurred while reading the file: "+ ex.getMessage());
 			this.setReprocessQuery(true);
 			this.setSimilarityFound(false);
 
@@ -97,7 +97,7 @@ public class NcbiBlastParser {
         	String querylen = iteration.getIterationQueryLen();
 			List<Hit> listHits = iteration.iterationHits.hit;
 			
-			BlastIterationData iterationData = new BlastIterationData(iterNum, queryID, queryDef, querylen, listHits);
+			BlastIterationData iterationData = new BlastIterationData(iteration, queryID, queryDef, querylen, listHits, seqDB);
 			res.add(iterationData);
 		}
         
