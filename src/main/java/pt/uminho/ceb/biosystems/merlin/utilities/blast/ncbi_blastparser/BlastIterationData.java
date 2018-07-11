@@ -276,4 +276,23 @@ public class BlastIterationData {
 		
 		return Integer.parseInt(this.hits.get(Integer.parseInt(hitNum)-1).getHitHsps().getHsp().get(0).getHspGaps());
 	}
+	
+	
+	/**
+	 * @param hitNum
+	 * @return
+	 */
+	public double getHitQueryCoverage(String hitNum){
+		
+		return (double)(getHitAlignmentLength(hitNum)- getHitAlignmentGaps(hitNum))/(double)getQueryLen();
+	}
+	
+	/**
+	 * @param hitNum
+	 * @return
+	 */
+	public double getHiTargetCoverage(String hitNum){
+		
+		return (double)(getHitAlignmentLength(hitNum)- getHitAlignmentGaps(hitNum))/(double)getHitLength(hitNum);
+	}
 }

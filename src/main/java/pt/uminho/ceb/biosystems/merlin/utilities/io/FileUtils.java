@@ -79,6 +79,36 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 		return workspaceTriageFolder;
 	}
 	
+	/**
+	 * @param databaseName
+	 * @param taxonomyID
+	 * @return
+	 */
+	public static String getWorkspaceTaxonomyTempFolderPath(String databaseName, Long taxonomyID){
+		
+		String workspaceTempFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("temp/");
+		
+		File file = new File(workspaceTempFolder);
+		file.mkdirs();
+		
+		return workspaceTempFolder;
+	}
+	
+	/**
+	 * @param databaseName
+	 * @param taxonomyID
+	 * @return
+	 */
+	public static String getWorkspaceTaxonomyGprsFolderPath(String databaseName, Long taxonomyID){
+		
+		String workspaceTempFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("gprs/");
+		
+		File file = new File(workspaceTempFolder);
+		file.mkdirs();
+		
+		return workspaceTempFolder;
+	}
+	
 	/** 
 	 * Method to return merlin home folder file
 	 * @return
