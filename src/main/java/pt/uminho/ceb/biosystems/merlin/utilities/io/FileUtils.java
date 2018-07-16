@@ -110,12 +110,27 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 	 */
 	public static String getWorkspaceTaxonomyGprsFolderPath(String databaseName, Long taxonomyID){
 		
-		String workspaceTempFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("gprs/");
+		String workspaceGprsFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("gprs/");
 		
-		File file = new File(workspaceTempFolder);
+		File file = new File(workspaceGprsFolder);
 		file.mkdirs();
 		
-		return workspaceTempFolder;
+		return workspaceGprsFolder;
+	}
+	
+	/**
+	 * @param databaseName
+	 * @param taxonomyID
+	 * @return
+	 */
+	public static String getWorkspaceTaxonomyFillGapsFolderPath(String databaseName, Long taxonomyID){
+		
+		String workspaceFillGapsFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("fill_gaps/");
+		
+		File file = new File(workspaceFillGapsFolder);
+		file.mkdirs();
+		
+		return workspaceFillGapsFolder;
 	}
 	
 	/** 

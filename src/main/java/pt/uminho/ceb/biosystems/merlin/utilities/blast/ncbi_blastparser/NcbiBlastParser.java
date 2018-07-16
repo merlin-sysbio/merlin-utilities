@@ -54,6 +54,7 @@ public class NcbiBlastParser {
 			this.setSimilarityFound(false);
 
 		}
+		
 	}
 	
 	public NcbiBlastParser (InputStream inputStream) {
@@ -75,7 +76,7 @@ public class NcbiBlastParser {
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
-			System.out.println("Ocorreu um erro ao ler o ficheiro. Erro: "+ ex.getMessage());
+			System.err.println("An error occurred while reading the file: "+ ex.getMessage());
 			this.setReprocessQuery(true);
 		}
 	}
@@ -89,7 +90,7 @@ public class NcbiBlastParser {
         
         for (Iteration iteration : listIterations) {
 			
-        	Integer iterNum = Integer.parseInt(iteration.iterationIterNum);
+//        	Integer iterNum = Integer.parseInt(iteration.iterationIterNum);
 			
         	String seqDB = getBlastOutputDb();
         	String queryID = iteration.getIterationQueryID();
