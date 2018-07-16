@@ -1,6 +1,7 @@
 package pt.uminho.ceb.biosystems.merlin.utilities.io;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.StringTokenizer;
 
 public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils{
@@ -54,7 +55,6 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 	public static String getCurrentTempDirectory(){
 		
 		return getHomeFolderPath().concat("temp/");
-		
 	}
 	
 	/**method to return workspace folder path
@@ -88,6 +88,7 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 		return workspaceTriageFolder;
 	}
 	
+	
 	/**
 	 * @param databaseName
 	 * @param taxonomyID
@@ -102,6 +103,7 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 		
 		return workspaceTempFolder;
 	}
+	
 	
 	/**
 	 * @param databaseName
@@ -118,6 +120,7 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 		return workspaceGprsFolder;
 	}
 	
+	
 	/**
 	 * @param databaseName
 	 * @param taxonomyID
@@ -132,6 +135,7 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 		
 		return workspaceFillGapsFolder;
 	}
+	
 	
 	/** 
 	 * Method to return merlin home folder file
