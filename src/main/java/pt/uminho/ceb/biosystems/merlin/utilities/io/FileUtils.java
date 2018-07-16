@@ -49,6 +49,14 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 		return path;
 	}
 	
+	/**
+	 * @return
+	 */
+	public static String getCurrentTempDirectory(){
+		
+		return getHomeFolderPath().concat("temp/");
+	}
+	
 	/**method to return workspace folder path
 	 * @return
 	 */
@@ -79,6 +87,55 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 		
 		return workspaceTriageFolder;
 	}
+	
+	
+	/**
+	 * @param databaseName
+	 * @param taxonomyID
+	 * @return
+	 */
+	public static String getWorkspaceTaxonomyTempFolderPath(String databaseName, Long taxonomyID){
+		
+		String workspaceTempFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("temp/");
+		
+		File file = new File(workspaceTempFolder);
+		file.mkdirs();
+		
+		return workspaceTempFolder;
+	}
+	
+	
+	/**
+	 * @param databaseName
+	 * @param taxonomyID
+	 * @return
+	 */
+	public static String getWorkspaceTaxonomyGprsFolderPath(String databaseName, Long taxonomyID){
+		
+		String workspaceGprsFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("gprs/");
+		
+		File file = new File(workspaceGprsFolder);
+		file.mkdirs();
+		
+		return workspaceGprsFolder;
+	}
+	
+	
+	/**
+	 * @param databaseName
+	 * @param taxonomyID
+	 * @return
+	 */
+	public static String getWorkspaceTaxonomyFillGapsFolderPath(String databaseName, Long taxonomyID){
+		
+		String workspaceFillGapsFolder = FileUtils.getWorkspaceTaxonomyFolderPath(databaseName, taxonomyID).concat("fill_gaps/");
+		
+		File file = new File(workspaceFillGapsFolder);
+		file.mkdirs();
+		
+		return workspaceFillGapsFolder;
+	}
+	
 	
 	/** 
 	 * Method to return merlin home folder file
