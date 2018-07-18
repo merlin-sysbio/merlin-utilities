@@ -54,7 +54,12 @@ public class FileUtils extends pt.uminho.ceb.biosystems.mew.utilities.io.FileUti
 	 */
 	public static String getCurrentTempDirectory(){
 		
-		return getHomeFolderPath().concat("temp/");
+		String tempDirectory = getHomeFolderPath().concat("temp/");
+		
+		File file = new File(tempDirectory);
+		file.mkdirs();
+		
+		return tempDirectory;
 	}
 	
 	/**method to return workspace folder path
