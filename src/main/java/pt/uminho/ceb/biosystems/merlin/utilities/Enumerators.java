@@ -35,7 +35,8 @@ public class Enumerators {
 	 * available methods for alignment
 	 */
 	public static enum Method {
-	
+		
+		Blast,
 		SmithWaterman,
 		NeedlemanWunsch
 	}
