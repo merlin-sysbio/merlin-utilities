@@ -552,7 +552,7 @@ public enum ExternalRefSource {
 	public String getIdentifierId(String identifierCode){
 
 		identifierCode = identifierCode.replaceAll("%3A", ":");
-		String regExpString = "http://identifier.org/"+getIdentifierId()+"/(.+)";
+		String regExpString = "http://identifiers.org/"+getIdentifierId()+"/(.+)";
 
 		Pattern pattern = Pattern.compile(regExpString);
 		Matcher matcher = pattern.matcher(identifierCode);
@@ -567,7 +567,7 @@ public enum ExternalRefSource {
 		if(this.getIdentifierId() == null)
 			return null;
 
-		String identifierCode = "http://identifier.org/" + getIdentifierId() + "/" + sourceId;
+		String identifierCode = "http://identifiers.org/" + getIdentifierId() + "/" + sourceId;
 		return identifierCode;
 	}
 
