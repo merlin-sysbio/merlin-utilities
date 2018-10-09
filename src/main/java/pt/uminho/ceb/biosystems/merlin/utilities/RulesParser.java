@@ -87,7 +87,7 @@ public class RulesParser {
 	 * @return
 	 */
 	public static String reverseParseGeneRules(String processedData, Map<String, Integer> genes) {
-
+		
 		List<List<Pair<String, String>>> res = new ArrayList<>();
 
 		String [] rules = processedData.split(" OR ");

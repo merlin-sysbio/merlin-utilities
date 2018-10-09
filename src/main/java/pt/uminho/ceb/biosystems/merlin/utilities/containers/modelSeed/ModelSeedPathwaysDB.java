@@ -1,4 +1,4 @@
-package pt.uminho.ceb.biosystems.merlin.utilities.containers;
+package pt.uminho.ceb.biosystems.merlin.utilities.containers.modelSeed;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,11 +1,14 @@
-package pt.uminho.ceb.biosystems.merlin.utilities.containers;
+package pt.uminho.ceb.biosystems.merlin.utilities.containers.modelSeed;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import pt.uminho.ceb.biosystems.merlin.utilities.Utilities;
 import pt.uminho.ceb.biosystems.merlin.utilities.io.FileUtils;
@@ -13,12 +16,14 @@ import pt.uminho.ceb.biosystems.merlin.utilities.io.FileUtils;
 
 public class ModelSeedCompoundsDB {
 
-	private Map<String, ArrayList<String>> compoundsDB;
+	private Map<String, String[]> compoundsDB;
+	private Set<String> coreCompounds;
 
 
 	public ModelSeedCompoundsDB(){
 
-		this.compoundsDB = new HashMap<String, ArrayList<String>>();
+		this.compoundsDB = new HashMap<String, String[]>();
+		this.coreCompounds = new HashSet<>();
 
 		readCompoundsDBFile();
 	}
@@ -57,14 +62,36 @@ public class ModelSeedCompoundsDB {
 
 		for(String line : compoundsList){
 
-			ArrayList<String> compoundInfo = new ArrayList<>();
-
+			String[] compoundInfo = new String[8];
 			String[] infoList = line.split("\t");
 
-			for(int i=1 ; i<8 ; i++)
-				compoundInfo.add(infoList[i]);
+//			for(int i=1 ; i<8 ; i++)
+//				compoundInfo.add(infoList[i]);
+			
+			boolean isObsolete = infoList[9].equals("1");
+
+			if(!isObsolete){
+			
+			compoundInfo[0] = infoList[1];	//abbreviation
+			compoundInfo[1] = infoList[2];	//name
+			compoundInfo[2] = infoList[3];	//formula
+			compoundInfo[3] = infoList[4];	//mass
+			compoundInfo[4] = infoList[6];	//inchi key
+			compoundInfo[5] = infoList[7];	//charge
+			//isCore
+			if(infoList[8].equals("1")){
+				compoundInfo[6] = "true";
+				this.coreCompounds.add(infoList[0]);
+			}
+			else{
+				compoundInfo[6] = "false";
+			}
+			
+			compoundInfo[7] = infoList[10]; //linked compounds
 
 			this.compoundsDB.put(infoList[0], compoundInfo);
+			
+			}
 		}
 	}
 
@@ -91,7 +118,7 @@ public class ModelSeedCompoundsDB {
 	 */
 	public String getCompoundName(String compoundID){
 
-		return this.compoundsDB.get(compoundID).get(1);
+		return this.compoundsDB.get(compoundID)[1];
 	}
 
 	/**
@@ -101,7 +128,7 @@ public class ModelSeedCompoundsDB {
 	 */
 	public String getCompoundAbbreviation(String compoundID){
 
-		return this.compoundsDB.get(compoundID).get(0);	
+		return this.compoundsDB.get(compoundID)[0];	
 
 	}
 
@@ -112,7 +139,7 @@ public class ModelSeedCompoundsDB {
 	 */
 	public String getCompoundFormula(String compoundID){
 
-		return this.compoundsDB.get(compoundID).get(2);	
+		return this.compoundsDB.get(compoundID)[2];	
 	}
 	
 	/**
@@ -122,7 +149,7 @@ public class ModelSeedCompoundsDB {
 	 */
 	public String getCompoundCharge(String compoundID){
 
-		return this.compoundsDB.get(compoundID).get(6);	
+		return this.compoundsDB.get(compoundID)[5];	
 	}
 
 	/**
@@ -132,7 +159,7 @@ public class ModelSeedCompoundsDB {
 	 */
 	public String getCompoundMolecularWeight(String compoundID){
 
-		return this.compoundsDB.get(compoundID).get(3);
+		return this.compoundsDB.get(compoundID)[3];
 	}
 
 	/**
@@ -142,6 +169,38 @@ public class ModelSeedCompoundsDB {
 	 */
 	public String getCompoundInchikey(String compoundID){
 
-		return this.compoundsDB.get(compoundID).get(5);
+		return this.compoundsDB.get(compoundID)[4];
+	}
+	
+	/**
+	 * @param compoundID
+	 * @return
+	 */
+	public boolean isCoreCompound(String compoundID){
+		
+		return Boolean.parseBoolean(this.compoundsDB.get(compoundID)[6]);
+		
+	}
+	
+	/**
+	 * @param compoundID
+	 * @return
+	 */
+	public List<String> getLinkedCompounds(String compoundID){
+		
+		List<String> linkedCompounds = new ArrayList<>();
+		
+		if(this.compoundsDB.get(compoundID)[7]!=null && !this.compoundsDB.get(compoundID)[7].equals("null"))
+			linkedCompounds = Arrays.asList(this.compoundsDB.get(compoundID)[7].split(";"));
+		
+		return linkedCompounds;
+	}
+	
+	/**
+	 * @return
+	 */
+	public Set<String> getCoreCompounds(){
+		
+		return this.coreCompounds;
 	}
 }

@@ -43,4 +43,33 @@ public class ConfFileReader {
 		}
 		return conf;
 	}
+	
+	
+	/**
+	 * @return HashMap of file extensions to be download from NCBI
+	 * @throws IOException
+	 */
+	public static HashMap<String,String> readExtensionsConf() throws IOException{
+
+		File extensionFile = new File(FileUtils.getConfFolderPath() + "ftpfiles_extensions.conf");
+
+		HashMap<String, String> extensions = new HashMap<String,String>();
+
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(extensionFile));
+
+		String text, type, extension;
+		while ((text = bufferedReader.readLine()) != null) {
+			if(text.toUpperCase().matches("^[A-Z].*$")) {
+				type = text.split("\t")[0];
+				extension = text.split("\t")[1];
+
+				extensions.put(type,extension);
+			}
+		}
+		bufferedReader.close();
+
+		return extensions;
+		
+	}
+	
 }

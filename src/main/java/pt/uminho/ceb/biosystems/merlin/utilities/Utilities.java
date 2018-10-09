@@ -203,6 +203,9 @@ public class Utilities {
 	}
 		
 		
+	/**
+	 * @return
+	 */
 	public static String getMerlinVersion(){
 		
 		List<String> readerConfFile = null;

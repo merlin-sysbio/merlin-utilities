@@ -2,6 +2,10 @@ package pt.uminho.ceb.biosystems.merlin.utilities.blast.ncbi_blastparser;
 
 import java.util.List;
 
+/**
+ * @author amaromorais
+ *
+ */
 public class BlastIterationData {
 	
 	private String qseq;
