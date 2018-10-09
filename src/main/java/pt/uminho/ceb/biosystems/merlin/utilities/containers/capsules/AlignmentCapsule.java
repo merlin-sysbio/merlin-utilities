@@ -19,7 +19,7 @@ public class AlignmentCapsule {
 	private AlignmentScoreType alignmentScoreType;
 	private String matrix;
 	private String ko;
-	private double score, alignedScore, maxScore, minScore, evalue, bitScore;
+	private double score, maxScore, minScore, evalue, bitScore;
 	private Method method;
 	private int[][][] scoreMatrix;
 	private int numIdenticals, numSimilars, queryLength, targetLength, alignmentLength;
@@ -38,7 +38,6 @@ public class AlignmentCapsule {
 	 * @param query
 	 * @param target
 	 * @param ko
-	 * @param score
 	 * @param maxScore
 	 * @param minScore
 	 * @param alignedScore
@@ -51,7 +50,7 @@ public class AlignmentCapsule {
 	 * @param method
 	 * @param alignmentScoreType
 	 */
-	public AlignmentCapsule(String query, String target, String ko, double score, double maxScore, double minScore, double alignedScore,
+	public AlignmentCapsule(String query, String target, String ko, double maxScore, double minScore, double score,
 			int numIdenticals, int numSimilars, int alignmentLength, int queryLength, int targetLength, 
 			String matrix, Method method, AlignmentScoreType alignmentScoreType) {
 
@@ -59,10 +58,9 @@ public class AlignmentCapsule {
 		this.setQuery(query);
 		this.setTarget(target);
 		this.setKo(ko);
-		this.setScore(score);
 		this.setMaxScore(maxScore);
 		this.setMinScore(minScore);
-		this.setAlignedScore(alignedScore);
+		this.setScore(score);
 		this.setNumIdenticals(numIdenticals);
 		this.setNumSimilars(numSimilars);
 		this.setAlignmentLength(alignmentLength);
@@ -78,7 +76,7 @@ public class AlignmentCapsule {
 	 * @param query
 	 * @param target
 	 * @param ko
-	 * @param score
+	 * @param calculatedScore
 	 * @param maxScore
 	 * @param minScore
 	 * @param alignedScore
@@ -95,7 +93,7 @@ public class AlignmentCapsule {
 	 * @param method
 	 * @param alignmentScoreType
 	 */
-	public AlignmentCapsule(String query, String target, String ko, double score, double maxScore, double minScore, double alignedScore,
+	public AlignmentCapsule(String query, String target, String ko, double maxScore, double minScore, double score,
 			int numIdenticals, int numSimilars, int alignmentLength, int queryLength, int targetLength, double coverageQuery, double coverageTarget, int gapsQuery, int gapsTarget, 
 			String matrix, Method method, AlignmentScoreType alignmentScoreType) {
 
@@ -106,7 +104,6 @@ public class AlignmentCapsule {
 		this.setScore(score);
 		this.setMaxScore(maxScore);
 		this.setMinScore(minScore);
-		this.setAlignedScore(alignedScore);
 		this.setNumIdenticals(numIdenticals);
 		this.setNumSimilars(numSimilars);
 		this.setAlignmentLength(alignmentLength);
@@ -452,27 +449,13 @@ public class AlignmentCapsule {
 	}
 
 	/**
-	 * @return the alignedScore
-	 */
-	public double getAlignedScore() {
-		return alignedScore;
-	}
-
-	/**
-	 * @param alignedScore the alignedScore to set
-	 */
-	public void setAlignedScore(double alignedScore) {
-		this.alignedScore = alignedScore;
-	}
-
-	/**
 	 * Get overall alignment score.
 	 * 
 	 * @return double alignment score
 	 */
 	public double getAlignmentScore(){
 
-		return (this.getAlignedScore()-this.getMinScore())/(this.getMaxScore()-this.getMinScore());
+		return (this.getScore()-this.getMinScore())/(this.getMaxScore()-this.getMinScore());
 	}
 
 	/**
@@ -549,21 +532,6 @@ public class AlignmentCapsule {
 	 */
 	public void setGapsTarget(int gapsTarget) {
 		this.gapsTarget = gapsTarget;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "AlignmentContainer [query=" + query + ", queryLocus=" + queryLocus + ", target=" + target
-				+ ", targetLocus=" + targetLocus + ", alignmentScoreType=" + alignmentScoreType + ", matrix=" + matrix
-				+ ", ko=" + ko + ", score=" + score + ", alignedScore=" + alignedScore + ", maxScore=" + maxScore
-				+ ", minScore=" + minScore + ", method=" + method + ", scoreMatrix=" + Arrays.toString(scoreMatrix)
-				+ ", numIdenticals=" + numIdenticals + ", numSimilars=" + numSimilars + ", queryLength=" + queryLength
-				+ ", targetLength=" + targetLength + ", alignmentLength=" + alignmentLength + ", coverageQuery="
-				+ coverageQuery + ", coverageTarget=" + coverageTarget + ", gapsQuery=" + gapsQuery + ", gapsTarget="
-				+ gapsTarget + "]";
 	}
 
 	/**
