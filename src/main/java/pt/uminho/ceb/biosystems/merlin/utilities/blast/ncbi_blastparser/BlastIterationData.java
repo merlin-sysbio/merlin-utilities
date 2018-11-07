@@ -236,6 +236,8 @@ public class BlastIterationData {
 	/**
 	 * @param hit
 	 * @return hitBestScore
+	 * 
+	 * return the Alignment identity percent
 	 */
 	public Double getIdentityScore(String hitNum){
 		
