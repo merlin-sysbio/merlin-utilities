@@ -63,4 +63,51 @@ public class Enumerators {
 		}
 	}
 	
+	
+	public enum SequenceType {
+		
+		PROTEIN{
+			@Override
+			public String toString(){
+				return "Protein";
+			}
+		},
+		GENOMIC_DNA{
+			@Override
+			public String toString(){
+				return "DNA";
+			}
+		},
+		CDS_DNA{
+			@Override
+			public String toString(){
+				return "DNA_cds";
+			}
+		},
+		RNA{
+			@Override
+			public String toString(){
+				return "RNA";
+			}
+		},
+//		MRNA{
+//			@Override
+//			public String toString(){
+//				return "mRNA";
+//			}
+//		},
+		RRNA{
+			@Override
+			public String toString(){
+				return "rRNA";
+			}
+		},
+		TRNA{
+			@Override
+			public String toString(){
+				return "tRNA";
+			}
+		}
+	}
+	
 }

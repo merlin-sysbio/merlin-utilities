@@ -14,6 +14,8 @@ import pt.uminho.ceb.biosystems.merlin.utilities.io.FileUtils;
 
 public class ModelSeedReactionsDB {
 	
+	private static final String HTTP_FILE_URL = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/reactions.tsv";
+	
 	private Map<String, String[]> modelSeedReactions;
 
 
@@ -31,7 +33,7 @@ public class ModelSeedReactionsDB {
 	public void readReactionsDBFile() {
 
 		String filePath = FileUtils.getConfFolderPath().concat("ModelSeedReactions.tsv");
-		String httpFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/reactions.tsv";
+//		String httpFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/reactions.tsv";
 		
 		List<String> reactionsList = new ArrayList<>();
 
@@ -39,7 +41,7 @@ public class ModelSeedReactionsDB {
 			if(new File(filePath).exists())
 				reactionsList = FileUtils.readLines(filePath);
 			else
-				reactionsList = Utilities.getFileFromHttpUrl(httpFileUrl);
+				reactionsList = Utilities.getFileFromHttpUrl(HTTP_FILE_URL);
 		} 
 
 		catch (IOException e) {

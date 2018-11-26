@@ -16,6 +16,8 @@ import pt.uminho.ceb.biosystems.merlin.utilities.io.FileUtils;
 
 public class ModelSeedCompoundsDB {
 
+	private static final String HTTP_FILE_URL = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/compounds.tsv";
+	
 	private Map<String, String[]> compoundsDB;
 	private Set<String> coreCompounds;
 
@@ -37,7 +39,7 @@ public class ModelSeedCompoundsDB {
 	public void readCompoundsDBFile() {
 
 		String filePath = FileUtils.getConfFolderPath().concat("ModelSeedCompounds.tsv");
-		String httpFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/compounds.tsv";
+//		String httpFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/compounds.tsv";
 
 		List<String> compoundsList = new ArrayList<>();
 
@@ -45,7 +47,7 @@ public class ModelSeedCompoundsDB {
 			if(new File(filePath).exists())
 				compoundsList = FileUtils.readLines(filePath);
 			else
-				compoundsList = Utilities.getFileFromHttpUrl(httpFileUrl);
+				compoundsList = Utilities.getFileFromHttpUrl(HTTP_FILE_URL);
 		} 
 
 		catch (IOException e) {
