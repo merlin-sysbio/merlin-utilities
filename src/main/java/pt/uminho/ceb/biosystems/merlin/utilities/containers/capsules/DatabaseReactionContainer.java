@@ -14,6 +14,7 @@ public class DatabaseReactionContainer {
 	private String reaction_id,
 	name,
 	equation,
+	boolean_rule,
 	source,
 	lowerBound,
 	upperBound, notes;
@@ -64,6 +65,43 @@ public class DatabaseReactionContainer {
 		this.ecnumbers = new ArrayList<>();
 		this.protein_id = new ArrayList<>();
 		this.compartment_idcompartment = new ArrayList<>();
+	}
+	
+	/**
+	 * @param name_compartmentIntegration
+	 * @param equation_compartmentIntegration
+	 * @param source_compartmentIntegration
+	 * @param reversible
+	 * @param inModel
+	 * @param isGeneric
+	 * @param isSpontaneous
+	 * @param isNonEnzymatic
+	 * @param boolean_rule
+	 */
+	public DatabaseReactionContainer(String name_compartmentIntegration,
+			String equation_compartmentIntegration,
+			String source_compartmentIntegration, boolean reversible,
+			boolean inModel, boolean isGeneric, boolean isSpontaneous,
+			boolean isNonEnzymatic, String boolean_rule) {
+		super();
+		this.name = name_compartmentIntegration;
+		this.equation = equation_compartmentIntegration;
+		this.source = source_compartmentIntegration;
+		this.reversible = reversible;
+		this.boolean_rule = boolean_rule;
+		this.inModel = inModel;
+		this.isGeneric = isGeneric;
+		this.isSpontaneous = isSpontaneous;
+		this.isNonEnzymatic = isNonEnzymatic;
+		this.ecnumbers_protein_id = new HashMap<>();
+		this.pathways = new ArrayList<>();
+		this.compound_idcompounds = new ArrayList<>();
+		this.stoichiometric_coefficients = new ArrayList<String>();
+		this.numbersofchains = new ArrayList<String>();
+		this.ecnumbers = new ArrayList<>();
+		this.protein_id = new ArrayList<>();
+		this.compartment_idcompartment = new ArrayList<>();
+		
 	}
 	
 	/**
@@ -160,6 +198,20 @@ public class DatabaseReactionContainer {
 	public void setReversible(boolean reversible) {
 		this.reversible = reversible;
 	}
+	/**
+	 * @return the boolean_rule
+	 */
+	public String getBoolean_rule() {
+		return boolean_rule;
+	}
+
+	/**
+	 * @param boolean_rule the boolean_rule to set
+	 */
+	public void setBoolean_rule(String boolean_rule) {
+		this.boolean_rule = boolean_rule;
+	}
+
 	/**
 	 * @return the inModel
 	 */

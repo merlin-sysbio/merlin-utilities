@@ -1,4 +1,4 @@
-package pt.uminho.ceb.biosystems.merlin.utilities.containers;
+package pt.uminho.ceb.biosystems.merlin.utilities.containers.modelSeed;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +11,8 @@ import pt.uminho.ceb.biosystems.merlin.utilities.Utilities;
 import pt.uminho.ceb.biosystems.merlin.utilities.io.FileUtils;
 
 public class ModelSeedPathwaysDB {
+	
+	private static final String HTTP_FILE_URL = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/Pathways/KEGG.pathways";
 
 	private Map<String, ArrayList<String>> keggPathwaysDB;
 	//	private List<String> keggReactionsList;
@@ -39,7 +41,7 @@ public class ModelSeedPathwaysDB {
 
 		String keggFilePath = FileUtils.getConfFolderPath().concat("KEGG_pathways.tsv");
 		//		String modelSeedFilePath = FileUtils.getHomeFolderPath().concat("HopeScenarios.tsv");
-		String httpKeggFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/Pathways/KEGG.pathways";
+//		String httpKeggFileUrl = "https://raw.githubusercontent.com/ModelSEED/ModelSEEDDatabase/master/Biochemistry/Pathways/KEGG.pathways";
 
 		List<String> keggPathwaysList = new ArrayList<>();
 		//		List<String> modelSeedPathwaysList = new ArrayList<>();
@@ -49,7 +51,7 @@ public class ModelSeedPathwaysDB {
 			if(new File(keggFilePath).exists())
 				keggPathwaysList = FileUtils.readLines(keggFilePath);
 			else
-				keggPathwaysList = Utilities.getFileFromHttpUrl(httpKeggFileUrl);
+				keggPathwaysList = Utilities.getFileFromHttpUrl(HTTP_FILE_URL);
 		} 
 
 		catch (IOException e) {
