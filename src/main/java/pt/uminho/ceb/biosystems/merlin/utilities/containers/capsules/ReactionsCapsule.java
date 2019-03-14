@@ -15,11 +15,10 @@ public class ReactionsCapsule {
 	private List<String> pathwaysList;
 	private Map <String, Integer> pathID;
 	private Set<String> pathwaysSet;
-	private Integer[] tableColumnsSize;
 	private ArrayList<Object> reactionsData;
 	
 	public ReactionsCapsule(Map<Integer, String> ids, HashMap<String,String> namesIndex, Set<String> activeReactions, HashMap<String,String> formulasIndex,
-			List<String> pathwaysList, Map <String, Integer> pathID, Set<String> pathwaysSet, Integer[] tableColumnsSize, ArrayList<Object> reactionsData){
+			List<String> pathwaysList, Map <String, Integer> pathID, Set<String> pathwaysSet, ArrayList<Object> reactionsData){
 		
 		this.ids = ids;
 		this.namesIndex = namesIndex;
@@ -28,7 +27,6 @@ public class ReactionsCapsule {
 		this.pathwaysList = pathwaysList;
 		this.pathID = pathID;
 		this.pathwaysSet = pathwaysSet;
-		this.tableColumnsSize = tableColumnsSize;
 		this.reactionsData = reactionsData;
 	}
 	
@@ -96,11 +94,4 @@ public class ReactionsCapsule {
 		this.pathwaysSet = pathwaysSet;
 	}
 	
-	public Integer[] getTableColumnsSize() {
-		return tableColumnsSize;
-	}
-
-	public void setTableColumnsSize(Integer[] tableColumnsSize) {
-		this.tableColumnsSize = tableColumnsSize;
-	}
 }
